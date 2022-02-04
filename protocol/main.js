@@ -7,7 +7,7 @@ const state = {
     bufferSlots: [],
     gameStarted: false,
     gameOver: false,
-    timer: 69.42 * 1000,
+    timer: 60 * 1000,
 }
 
 let timerState = {
