@@ -60,6 +60,9 @@ function selectItem(e) {
     if (!e.target.className.includes('active')) {
         return;
     }
+    if (e.target.className.includes('inactive')) {
+        return;
+    } 
     if (!state.gameStarted) {
         startGame();
     }
