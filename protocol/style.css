@@ -481,7 +481,7 @@ body {
     display: flex;
     color: white;
     width: 45%;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 }
 
 .sequence-row > div {
@@ -491,6 +491,7 @@ body {
 .description-row {
     display: flex;
     flex-direction: column;
+    margin-bottom: 8px;
 }
 
 .description-row > .title {
