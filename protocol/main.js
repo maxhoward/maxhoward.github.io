@@ -116,7 +116,9 @@ function checkSequences() {
         var index = sequences.findIndex(sequence => simpleHash(substring).includes(sequence))
         while (index > -1) {
             sequences[index] = "XXXX";
-            document.getElementById('sequence-' + index).classList.add('done');
+            var uploadRow = document.getElementById('sequence-' + index)
+            uploadRow.classList.add('done');
+            Array.from(uploadRow.querySelector('.sequence-row').children).forEach(item => item.style.display='inline');
             index = sequences.findIndex(sequence => joinedBuffers.includes(sequence))
         };
     });
