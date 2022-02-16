@@ -65,6 +65,11 @@ body {
     background-image: linear-gradient(to right, #00cc88, #00cc88 50%, white 50%, white);
 }
 
+.extractle_table td
+{
+    padding:0 40px 0 0; /* Only right padding*/
+}
+
 table {
     font-size: inherit;
 }
@@ -119,7 +124,7 @@ table {
                 </table>
             </div>
             <div class="button">&nbsp;</div>
-            <div class="box bg5 free" style="width: 60%; border:double;">
+            <div class="box bg5 gotoextractle" style="width: 60%; border:double;">
                 <table style="width:100%;">
                     <tr>
                         <td style="width:50%; text-align:right;">daily</td>
@@ -508,6 +513,46 @@ table {
             </tr>
         </table>
     </div>
+    <div id="extractle" class="extractle"  style="display: none;" width="100%" >
+        <table style="width: 100%; white-space: nowrap;">
+            <tr>
+                <td class="extractle restart" style="border: none; border-style: double; width:35%; text-align: center;">back</td>
+                <td style="width:*; text-align:center;" class="game_title"> Daily Extractle #55</td>
+            </tr>
+        </table>
+        <table class="extractle_table" style="white-space: nowrap;">
+            <tr>
+               <td> ⬛⬛⬛🟨🟨 </td>
+               <td> ⬛⬛🟨🟨⬛ </td>
+               <td> 🟨⬛⬛⬛🟨 </td>
+               <td> 🟨🟩⬛⬛⬛ </td>
+            <tr>
+            <tr>
+               <td> ⬛⬛🟨🟨🟨 </td>
+               <td> ⬛⬛⬛🟩⬛ </td>
+               <td> ⬛🟨⬛⬛⬛ </td>
+               <td> ⬛⬛⬛⬛⬛ </td>
+            <tr>
+            <tr>
+               <td> 🟨⬛🟨🟨⬛ </td>
+               <td> ⬛⬛⬛🟨⬛ </td>
+               <td> 🟩🟨⬛🟨⬛ </td>
+               <td> ⬛⬛🟨🟨🟨 </td>
+            <tr>
+            <tr>
+               <td> ⬛⬛⬛🟨🟨 </td>
+               <td> ⬛🟨🟨⬛⬛ </td>
+               <td> 🟩⬛⬛🟩⬛ </td>
+               <td> 🟩⬛⬛⬛🟩 </td>
+            <tr>
+            <tr>
+               <td> 🟩🟩🟩🟩🟩 </td>
+               <td> 🟩🟩🟩🟩🟩 </td>
+               <td> 🟩🟩🟩🟩🟩 </td>
+               <td> 🟩🟩🟩🟩🟩 </td>
+            <tr>
+        </table>
+    </div>
 </div>
 <script src="https://v6p9d9t4.ssl.hwcdn.net/html/5162977/mersenne.js"></script>
 <script>
@@ -679,8 +724,19 @@ function initFree() {
 }
 
 function backToTitle() {
+    acquire("title").forEach((node) => node.style.display = "");
+    acquire("extractle").forEach((node) => node.style.display = "none");
+    acquire("game").forEach((node) => node.style.display = "none");
+}
+
+function initExtractle() {
+    acquire("title").forEach((node) => node.style.display = "none");
+    acquire("extractle").forEach((node) => node.style.display = "");
+}
+
+function f() {
     restart();
-  acquire("title").forEach((node) => node.style.display = "");
+    acquire("title").forEach((node) => node.style.display = "");
     acquire("game").forEach((node) => node.style.display = "none");
 }
 
@@ -829,7 +885,7 @@ function restart() {
         var startDate = (new Date('01/24/2022'));
         seed = ((date.getTime() - startDate.getTime()) / (1000 * 3600 * 24)) >> 0;
 
-        printclear(acquire("game_title"), "daily nordle #" + seed.toString(10).padStart(4, "0"));
+        printclear(acquire("game_title"), "Daily Hexadurdle #55");
         console.log(seed.toString(10));
         last_daily = seed;
         if (!no_localstorage) {
@@ -961,28 +1017,11 @@ for (game_id = 2; game_id < 9; game_id++) {
     acquire("body")[0].appendChild(newGame)
     acquire("box restart")[game_id-1].style.display = "none";
     addClass(document.getElementById("game_" + game_id), "game-" + game_id)
-
 }
 
 addClass(document.getElementById("game"), "game-1")
 
-
-// var gameTwo = document.getElementById("game").cloneNode(true);
-// addIdSuffix(gameTwo, "_2")
-// acquire("body")[0].appendChild(gameTwo)
-// acquire("box restart")[1].style.display = "none";
-
-// var gameThree = document.getElementById("game").cloneNode(true);
-// addIdSuffix(gameThree, "_3")
-// acquire("body")[0].appendChild(gameThree)
-// acquire("box restart")[2].style.display = "none";
-
-// addClass(document.getElementById("game"), "game-1")
-// addClass(document.getElementById("game_2"), "game-2")
-// addClass(document.getElementById("game_3"), "game-3")
-
 acquire("daily")[0].onclick = initDaily;
-console.log(acquire("free"))
 
 var keys = "abcdefghijklmnopqrstuvwxyz".split("")
 for (k in keys) {
@@ -995,7 +1034,7 @@ for (k in keys) {
     }
 }
 
-acquire("free").forEach((node) => { node.onclick = initFree} )
+acquire("gotoextractle").forEach((node) => { node.onclick = initExtractle} )
 
 acquire("enter1").forEach((node) => node.onclick = function() {
     pk("", 13);
