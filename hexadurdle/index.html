@@ -774,7 +774,6 @@ function pk(key, keyCode) {
                 show_post_game(true);
             } else if (line >= ATTEMPTS) {
               acquire("body").forEach((node) => node.style.backgroundColor = "red");
-                show_post_game(true);
             }
 
             render_bg_keys();
